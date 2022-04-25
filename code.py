@@ -9,7 +9,7 @@ import urllib
 
 def transcode_file(request, filename):
     with open(filename, "r") as file:
-    command = 'ffmpeg -i "{source}" output_file.mpg'.format(source=file)
+        command = 'ffmpeg -i "{source}" output_file.mpg'.format(source=file)
     subprocess.call(command, shell=True)
 
 
