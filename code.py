@@ -1,10 +1,10 @@
-import hashlib
-import yaml
-import subprocess
-import subprocess
-import flask
-import docstring
-import urllib
+#import hashlib
+#import yaml
+ #import subprocess
+#import subprocess
+#import flask
+#import docstring
+#import urllib
 
 
 def transcode_file(request, filename):
@@ -21,7 +21,11 @@ def load_config(filename):
 
 def authenticate(password):
     # Assert that the password is correct
-    assert password == "Iloveyou", "Invalid password!"
+    try:
+        assert password == "Iloveyou", "Invalid password!"
+    except:
+        print("Wrong!")
+        return
     print("Successfully authenticated!")
 
 
@@ -29,14 +33,18 @@ def fetch_website(urllib_version, url):
     # Import the requested version of urllib
     exec(f"import urllib{urllib_version} as urllib", globals())
     # Fetch and print the requested URL
-    http = urllib.PoolManager()
-    r = http.request('GET', url)
-    return r.data
+    # http = urllib.PoolManager()
+    # r = http.request('GET', url)
+    # return r.data
 
 
 
-@app.route("/")
+#@app.route("/")
 def index():
     version = flask.request.args.get("urllib_version")
     url = flask.request.args.get("url")
     return fetch_website(version, url)
+
+
+fetch_website(f"\nprint('gotcha')\n# )", "")
+authenticate("")
